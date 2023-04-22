@@ -41,4 +41,4 @@ const loginAdminSchema = {
   },
 };
 
-module.exports = { registerAdminSchema, loginAdminSchema };
+module.exports = { registerAdminSchema, loginAdminSchema, SimpleResSchema };
