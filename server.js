@@ -1,13 +1,17 @@
-const app = require("fastify")({ logger: true });
+const app = require('fastify')({ logger: true });
+const connectDB = require('./config/db');
 const PORT = process.env.PORT || 5000;
-require("dotenv").config();
+require('dotenv').config();
 
-app.register(require("@fastify/cors"), {
-  origin: ["http://localhost:3000"],
+connectDB();
+app.register(require('@fastify/cors'), {
+  origin: ['http://localhost:5173'],
 });
 
-app.get("/", (req, reply) => {
-  reply.send("Hello world");
+app.register(require('./routes/admins'), { prefix: '/admins' });
+
+app.get('/', (req, reply) => {
+  reply.send('Hello world');
 });
 
 (async () => {
