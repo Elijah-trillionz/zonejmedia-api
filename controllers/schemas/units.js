@@ -18,20 +18,6 @@ const getAllUnitsSchema = {
   },
 };
 
-const getUnitMembersSchema = {
-  header: AdminAccessSchema,
-  params: {
-    unit: typeString,
-  },
-  response: {
-    200: {
-      type: 'array',
-      items: MemberResSchema,
-    },
-  },
-};
-
 module.exports = {
   getAllUnitsSchema,
-  getUnitMembersSchema,
 };

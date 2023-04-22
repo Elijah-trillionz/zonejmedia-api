@@ -19,29 +19,12 @@ const getAllUnitsHandler = async (req, reply) => {
   }
 };
 
-const getUnitMembersHandler = async (req, reply) => {
-  const { unit } = req.params;
-  try {
-    const members = await getUnitMembers(unit);
-
-    return reply.send(members);
-  } catch (err) {
-    sendError(500, 'A server error occurred', reply);
-  }
-};
-
-const getUnitMembers = async (unit) => {
-  const members = await Members.find({ unit });
-  return members;
-};
-
 const addUnitMembers = async (unit) => {
-  const members = await getUnitMembers(unit.name);
+  const members = await Members.find({ unit: unit.name });
 
   return { id: unit.id, name: unit.name, members: members.length };
 };
 
 module.exports = {
   getAllUnitsHandler,
-  getUnitMembersHandler,
 };

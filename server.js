@@ -15,6 +15,7 @@ app.decorate('verifyAdminToken', verifyAdminToken);
 app.register(require('./routes/admins'), { prefix: '/admins' });
 app.register(require('./routes/members'), { prefix: '/members' });
 app.register(require('./routes/units'), { prefix: '/units' });
+app.register(require('./routes/services'), { prefix: '/services' });
 
 app.get('/', (req, reply) => {
   reply.send('Hello world');
