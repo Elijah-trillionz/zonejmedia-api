@@ -98,4 +98,6 @@ module.exports = {
   getMemberSchema,
   createMemberSchema,
   updateMemberSchema,
+  AdminAccessSchema,
+  MemberResSchema,
 };
