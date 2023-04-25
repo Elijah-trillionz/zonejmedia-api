@@ -1,5 +1,4 @@
 const Services = require('../../models/Services');
-const Members = require('../../models/Members');
 const { ulid } = require('ulid');
 
 const sendError = (statusCode, msg, replyCb) => {
@@ -19,7 +18,6 @@ const getAllServicesHandler = async (req, reply) => {
 const getServiceHandler = async (req, reply) => {
   const { id } = req.params;
   try {
-    console.log(id);
     const service = await Services.findOne({ id });
 
     if (!service) return sendError(404, 'This service does not exist', reply);
@@ -47,7 +45,6 @@ const toggleMemberHandler = async (req, reply) => {
   const { id: serviceId } = req.params;
 
   try {
-    const id = ulid();
     const service = await Services.findOne({ id: serviceId });
 
     if (!service) return sendError(404, 'This service does not exist', reply);
