@@ -42,7 +42,7 @@ const registerAdminHandler = async (req, reply) => {
 const loginAdminHandler = async (req, reply) => {
   const { username, password } = req.body;
   try {
-    const user = await Admins.findOne({ username });
+    const user = await Admins.findOne({ username: username.toLowerCase() });
     if (!user)
       return sendError(400, 'Username or password is incorrect', reply);
 
