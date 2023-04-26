@@ -12,7 +12,7 @@ app.register(require('@fastify/cors'), {
 
 app.decorate('verifyAdminToken', verifyAdminToken);
 
-app.get('/', (req, reply) => {
+app.get('/api', (req, reply) => {
   reply.header('Content-Type', 'text/html');
   reply.header('Cache-Control', 's-max-age=1, stale-while-revalidate');
   reply.send(`Hello! This is the only public route`);
