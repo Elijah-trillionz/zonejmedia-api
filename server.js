@@ -7,12 +7,12 @@ require('dotenv').config();
 
 connectDB();
 app.register(require('@fastify/cors'), {
-  origin: ['http://localhost:3000'],
+  origin: ['http://localhost:3000', 'https://zonejmedia.vercel.app'],
 });
 
 app.decorate('verifyAdminToken', verifyAdminToken);
 
-app.get('/api', (req, reply) => {
+app.get('/', (req, reply) => {
   reply.header('Content-Type', 'text/html');
   reply.header('Cache-Control', 's-max-age=1, stale-while-revalidate');
   reply.send(`Hello! This is the only public route`);
