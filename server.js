@@ -12,14 +12,16 @@ app.register(require('@fastify/cors'), {
 
 app.decorate('verifyAdminToken', verifyAdminToken);
 
+app.get('/', (req, reply) => {
+  reply.header('Content-Type', 'text/html');
+  reply.header('Cache-Control', 's-max-age=1, stale-while-revalidate');
+  reply.send(`Hello! This is the only public route`);
+});
+
 app.register(require('./routes/admins'), { prefix: '/admins' });
 app.register(require('./routes/members'), { prefix: '/members' });
 app.register(require('./routes/units'), { prefix: '/units' });
 app.register(require('./routes/services'), { prefix: '/services' });
-
-app.get('/', (req, reply) => {
-  reply.send('Hello world');
-});
 
 (async () => {
   try {
