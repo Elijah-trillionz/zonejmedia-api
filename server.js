@@ -7,7 +7,7 @@ require('dotenv').config();
 
 connectDB();
 app.register(require('@fastify/cors'), {
-  origin: ['http://localhost:5173'],
+  origin: ['http://localhost:3000'],
 });
 
 app.decorate('verifyAdminToken', verifyAdminToken);

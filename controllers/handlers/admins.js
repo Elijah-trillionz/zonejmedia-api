@@ -70,4 +70,21 @@ const loginAdminHandler = async (req, reply) => {
   }
 };
 
-module.exports = { registerAdminHandler, loginAdminHandler };
+const getCurrentAdminHandler = async (req, reply) => {
+  const { id } = req.user;
+  try {
+    const admin = await Admins.findOne({ id });
+
+    if (!admin) return sendError(401, 'Unathorized access', reply);
+
+    return reply.send(admin);
+  } catch (err) {
+    sendError(500, 'A server error occurred', reply);
+  }
+};
+
+module.exports = {
+  registerAdminHandler,
+  loginAdminHandler,
+  getCurrentAdminHandler,
+};

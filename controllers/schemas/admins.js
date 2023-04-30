@@ -7,6 +7,14 @@ const SimpleResSchema = {
   },
 };
 
+const AdminAccessSchema = {
+  type: 'object',
+  required: ['access_token'],
+  properties: {
+    access_token: typeString,
+  },
+};
+
 const registerAdminSchema = {
   body: {
     type: 'object',
@@ -41,4 +49,22 @@ const loginAdminSchema = {
   },
 };
 
-module.exports = { registerAdminSchema, loginAdminSchema, SimpleResSchema };
+const getCurrentAdminSchema = {
+  header: AdminAccessSchema,
+  response: {
+    200: {
+      type: 'object',
+      properties: {
+        username: typeString,
+        id: typeString,
+      },
+    },
+  },
+};
+
+module.exports = {
+  registerAdminSchema,
+  loginAdminSchema,
+  SimpleResSchema,
+  getCurrentAdminSchema,
+};
